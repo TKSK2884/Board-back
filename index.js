@@ -249,7 +249,6 @@ async function writePostHandler(req, res) {
     let fetchedTitle = req.body.title ?? "";
     let fetchedContent = req.body.content ?? "";
     let fetchedCategory = req.body.category ?? "";
-
     let fetchedID = userInfo.id ?? "";
 
     if (
