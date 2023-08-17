@@ -1,3 +1,5 @@
+import http from "http";
+
 const express = require("express");
 const axios = require("axios").default;
 const cors = require("cors");
@@ -421,6 +423,19 @@ async function boardHandler(req, res) {
     });
 }
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
+if (process.env.PRODUCTION == "1") {
+    const options = {
+        key: fs.readFileSync("./keys/pk.pem"),
+        cert: fs.readFileSync("./keys/fc.pem"),
+    };
+
+    let server = https.createServer(options, app);
+
+    server.listen(port, () => {
+        console.log(`Example app listening on port ${port}`);
+    });
+} else {
+    app.listen(port, () => {
+        console.log(`Example app listening on port ${port}`);
+    });
+}
