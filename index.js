@@ -5,7 +5,7 @@ const axios = require("axios").default;
 const cors = require("cors");
 
 const app = express();
-const port = 3000;
+const port = 2096;
 
 const mysql = require("mysql2/promise");
 require("dotenv").config();
