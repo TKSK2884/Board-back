@@ -13,7 +13,7 @@ require("dotenv").config();
 
 const crypto = require("crypto");
 
-const mySalt = process.env.mySALT;
+const mySalt = process.env.MySALT;
 
 app.use(cors());
 app.use(express.json());
@@ -398,6 +398,8 @@ async function boardHandler(req, res) {
     }
 
     if (resultArray.length == 0) {
+        console.log("여기까지");
+
         return res.status(400).json({
             errorCode: ERROR_RESULT_INVALID,
             error: "Result NOT found",
