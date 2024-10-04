@@ -33,11 +33,13 @@ const ERROR_DB_INVALID = 301;
 const ERORR_BAD_REQUEST = 302;
 
 async function init() {
-    connection = await mysql.createConnection({
+    connection = await mysql.createPool({
         host: process.env.DB_SERVER_ADDR,
         user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         database: process.env.DB,
+        enableKeepAlive: true,
+        connectionLimit: 10,
     });
 
     console.log("DB Connection successful?:", connection != null);
